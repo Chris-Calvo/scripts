@@ -1,15 +1,18 @@
 import os
 
 # Option 1 - Create a link
-def c_link(src):
+def c_link():
+    src = input("Enter PATH to file or directory: ")
     print("Creating link...")
+
     if (os.path.exists):
         os.symlink(src, "/home")
     else:
         print("INVAID SOURCE PATH")
 
 # Option 2 - Remove a link
-def del_link(name):
+def del_link():
+    name = input("Enter NAME of shortcut")
     print("Removing link...")
     if (os.path.exists):
         os.unlink("/home" + name)
@@ -44,10 +47,10 @@ def main():
     while(True):
         val = input(">> ")
         if(val == "1"):
-            c_link(val)
+            c_link()
             reset()
         elif(val == "2"):
-            del_link(val)
+            del_link()
             reset()
         elif(val == "3"):
             sum_link()
