@@ -5,32 +5,29 @@ def find(name, path):
     for root, dirs, files in os.walk(path):
         if name in files:
             return os.path.join(root, name)
-        else:
-            return False
+    return False
 
 # Option 1 - Create a link
 def c_link():
-    fname = input("Enter FILENAME: ")
-    found = find(fname, "/home")
     print("Creating link...")
-
+    found = find(input("Enter FILENAME: "), "/home/student")
     if (found != False):
-        os.symlink(found, "/home")
+        os.symlink(found, "/home/student")
     else:
         print("ERROR: FILE COULD NOT BE FOUND")
 
 # Option 2 - Remove a link
 def del_link():
-    name = input("Enter NAME of shortcut")
+    found = find(input("Enter NAME of shortcut"), "/home/student")
     print("Removing link...")
-    if (os.path.exists):
-        os.unlink("/home" + name)
+    if (found != False):
+        os.unlink(found)
     else:
         print("INVAID SHORTCUT NAME")
 
 # Option 3 - List all links
 def sum_link():
-    os.system("cd /home")
+    os.system("cd /home/student")
     os.system("find . -maxdepth 1 -type l -ls")
 
 # Starting menu
@@ -71,4 +68,4 @@ def main():
             print("\033[31;1mINVALID COMMAND\033[37;0m")
         printStart()
 
-print(find("1_ping_test.py", "C:\CSEC"))
+print(find("1_ping_test.py", "C:/CSEC/"))
