@@ -35,10 +35,10 @@ def del_link():
 
 # Option 3 - List all links
 def sum_link():
-    os.system("cd /home/student")
+    os.chdir("/home/student")
     cmd = subprocess.check_output(["find", ".", "-maxdepth", "1", "-type", "l", "-ls"])
     print(cmd)
-    
+
 # Starting menu
 def printStart():
 	print(
