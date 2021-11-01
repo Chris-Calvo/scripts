@@ -1,18 +1,26 @@
 #!/usr/bin/python3
 import os
 
+# Finds a file
 def find(name, path):
     for root, dirs, files in os.walk(path):
         if name in files:
             return os.path.join(root, name)
     return False
 
+def parse(dest):
+    dest = dest.split("/")
+    print(dest[len(dest) - 1])
+    return dest[len(dest) - 1]
+
 # Option 1 - Create a link
 def c_link():
     print("Creating link...")
     found = find(input("Enter FILENAME: "), "/home/student")
     if (found != False):
-        os.symlink(found, "/home/student")
+        fname = parse(found)
+        os.system("touch " + fname)
+        os.symlink(found, "/home/student/" + fname)
     else:
         print("ERROR: FILE COULD NOT BE FOUND")
 
@@ -39,7 +47,7 @@ def printStart():
 	+"               1: Create a Symbolic Link\n"
 	+"               2: Remove a Symbolic Link\n"
 	+"               3: List Existing Symbolic Links\n"
-	+"                    Q or q to QUIT\n"
+	+"               Q or q to QUIT\n"
 	)
 
 # Reset output
