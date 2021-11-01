@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import os
+import subprocess
 
 # Finds a file
 def find(name, path):
@@ -10,7 +11,6 @@ def find(name, path):
 
 def parse(dest):
     dest = dest.split("/")
-    print(dest[len(dest) - 1])
     return dest[len(dest) - 1]
 
 # Option 1 - Create a link
@@ -26,7 +26,7 @@ def c_link():
 
 # Option 2 - Remove a link
 def del_link():
-    found = find(input("Enter NAME of shortcut"), "/home/student")
+    found = find(input("Enter NAME of shortcut: "), "/home/student")
     print("Removing link...")
     if (found != False):
         os.unlink(found)
@@ -36,8 +36,9 @@ def del_link():
 # Option 3 - List all links
 def sum_link():
     os.system("cd /home/student")
-    os.system("find . -maxdepth 1 -type l -ls")
-
+    cmd = subprocess.check_output(["find", ".", "-maxdepth", "1", "-type", "l", "-ls"])
+    print(cmd)
+    
 # Starting menu
 def printStart():
 	print(
