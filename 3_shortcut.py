@@ -30,6 +30,7 @@ def del_link():
     print("Removing link...")
     if (found != False):
         os.unlink(found)
+        os.remove(found)
     else:
         print("INVAID SHORTCUT NAME")
 
