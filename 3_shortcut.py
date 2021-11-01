@@ -67,4 +67,4 @@ def main():
         else:
             print("\033[31;1mINVALID COMMAND\033[37;0m")
 
-print(find("1_ping_test.py", "C:/CSEC/"))
+main()
