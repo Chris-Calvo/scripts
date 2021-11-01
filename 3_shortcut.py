@@ -39,7 +39,7 @@ def printStart():
 	+"               1: Create a Symbolic Link\n"
 	+"               2: Remove a Symbolic Link\n"
 	+"               3: List Existing Symbolic Links\n"
-	+"               Q or q to QUIT\n"
+	+"                    Q or q to QUIT\n"
 	)
 
 # Reset output
@@ -66,6 +66,5 @@ def main():
             break
         else:
             print("\033[31;1mINVALID COMMAND\033[37;0m")
-        printStart()
 
 print(find("1_ping_test.py", "C:/CSEC/"))
