@@ -1,15 +1,23 @@
 #!/usr/bin/python3
 import os
 
+def find(name, path):
+    for root, dirs, files in os.walk(path):
+        if name in files:
+            return os.path.join(root, name)
+        else:
+            return False
+
 # Option 1 - Create a link
 def c_link():
-    src = input("Enter PATH to file or directory: ")
+    fname = input("Enter FILENAME: ")
+    found = find(fname, "/home")
     print("Creating link...")
 
-    if (os.path.exists):
-        os.symlink(src, "/home")
+    if (found != False):
+        os.symlink(found, "/home")
     else:
-        print("INVAID SOURCE PATH")
+        print("ERROR: FILE COULD NOT BE FOUND")
 
 # Option 2 - Remove a link
 def del_link():
@@ -63,4 +71,4 @@ def main():
             print("\033[31;1mINVALID COMMAND\033[37;0m")
         printStart()
 
-main()
+print(find("1_ping_test.py", "C:\CSEC"))
