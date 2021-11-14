@@ -51,11 +51,7 @@ def main():
         count = sortedVer.get(item)
         #ip_as_bytes = bytes(map(int, item.split('.')))
         country = geolite2.lookup(item)
-        print(count, "          ", item, "            "#, country.country)
-        )
-
-
-    #print(sortedVer)
+        print(count, "          ", item, "            ", country.country)
 
 main()
 
