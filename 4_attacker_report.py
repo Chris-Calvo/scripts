@@ -2,8 +2,10 @@
 from geoip import geolite2
 import os
 import re
+import time
+import socket
+import struct
 
-test = "Apr 15 00:00:04 spark sshd[7798]: Failed password for root from 218.25.208.92 port 20924 ssh2"
 regex = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
 ipDict = {}
 
@@ -30,9 +32,31 @@ def parse_dictionary(dictionary):
     for item in popList:
         dictionary.pop(item)
 
-counter("C:/Users/Chris/Downloads/syslog.log")
-parse_dictionary(ipDict)
-sorted = dict(sorted(ipDict.items(), key=lambda item: item[1]))
-print(sorted)
+def main():
+    # Clears When Running
+    os.system("clear")
+    # Appends each failed attempt to dictionary
+    counter("C:/Users/Chris/Downloads/syslog.log")
+    # People make mistakes, clear out those who do not seem like a threat
+    parse_dictionary(ipDict)
+    # Sort dictionary based on number of attacks
+    sortedVer = dict(sorted(ipDict.items(), key=lambda item: item[1]))
+
+    # Print attack report header
+    today = time.strftime("%m / %d / %Y")
+    print("Attacker Report - ", today)
+    print ("\n")
+    print("COUNT            IP ADDRESS          COUNTRY")
+    for item in sortedVer:
+        count = sortedVer.get(item)
+        #ip_as_bytes = bytes(map(int, item.split('.')))
+        country = geolite2.lookup(item)
+        print(count, "          ", item, "            "#, country.country)
+        )
+
+
+    #print(sortedVer)
+
+main()
 
     
